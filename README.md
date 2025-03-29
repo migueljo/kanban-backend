@@ -96,3 +96,47 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+
+# Kanban Backend
+
+## Available Scripts
+
+### Development
+
+- `pnpm start:dev`: Start the application in development mode with hot-reload
+- `pnpm start:debug`: Start the application in debug mode with hot-reload
+- `pnpm format`: Format code using Prettier
+- `pnpm lint`: Run linter and automatically fix issues
+
+### Production
+
+- `pnpm build`: Build the application for production
+- `pnpm start`: Start the application in normal mode
+- `pnpm start:prod`: Start the compiled application in production mode
+- `pnpm start:prod:ssl`: Start the application in production mode with SSL
+
+### Docker
+
+- `pnpm docker:build`: Build the Docker image for production
+- `pnpm docker:run`: Run the Docker container in production
+- `pnpm docker:dev`: Start Docker containers in development mode with hot-reload
+- `pnpm docker:dev:build`: Rebuild and start Docker containers in development mode
+- `pnpm docker:down`: Stop and remove Docker containers
+
+### Database
+
+- `pnpm db:generate`: Generate database migrations
+- `pnpm db:push`: Apply migrations to the database
+- `pnpm db:studio`: Start Drizzle Studio to manage the database
+
+### Testing
+
+- `pnpm test`: Run unit tests
+- `pnpm test:watch`: Run unit tests in watch mode
+- `pnpm test:cov`: Run tests with coverage
+- `pnpm test:debug`: Run tests in debug mode
+- `pnpm test:e2e`: Run end-to-end tests
+
+### SSL
+
+- `pnpm ssl:generate`: Generate SSL certificates for development

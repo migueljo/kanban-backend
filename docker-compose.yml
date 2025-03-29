@@ -1,15 +1,128 @@
-version: '3.8'
+# =============================================
+# docker-compose.yml Documentation
+# Version: 3.8
+# =============================================
 
+# Services
 services:
+  # =============================================
+  # API (Main Service)
+  # =============================================
   api:
+    # Service build configuration
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.dev
+
+    # Port configuration
+    # Format: 'host_port:container_port'
+    # Configurable port through environment variable
+    # Default value: 3000
     ports:
-      - '3000:3000'
+      - '${PORT:-3000}:${PORT:-3000}'
+
+    # Environment variables
+    # NODE_ENV: Development mode
+    # PORT: Configurable port
     environment:
       - NODE_ENV=development
+      - PORT=${PORT:-3000}
+
+    # Development volumes
+    # - Mounts source code for real-time development
+    # - Preserves node_modules in container
     volumes:
       - .:/app
       - /app/node_modules
-    command: pnpm run start:dev
+
+    # Dependencies
+    # Waits for PostgreSQL to be healthy before starting
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+    # Restart policy
+    # Automatic restart on failure
+    # Does not restart if manually stopped
+    restart: unless-stopped
+
+    # Security configurations
+    # - Prevents privilege escalation
+    # - Restricts file execution
+    security_opt:
+      - no-new-privileges
+      - apparmor:unconfined
+
+    # System limits
+    # Optimizes open file limits
+    ulimits:
+      nofile:
+        soft: 65536
+        hard: 65536
+
+  # =============================================
+  # PostgreSQL (Database)
+  # =============================================
+  postgres:
+    # PostgreSQL 16 Alpine image (lightweight)
+    image: postgres:16-alpine
+
+    # Port configuration
+    # Standard PostgreSQL port exposed
+    ports:
+      - '5432:5432'
+
+    # Environment variables
+    # Database credentials and name
+    # NOTE: In production, use secure environment variables
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=kanban
+
+    # Data persistence volume
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+    # Health monitoring
+    # - Checks availability every 10 seconds
+    # - 5 second timeout
+    # - 5 reconnection attempts
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U postgres']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+    # Restart policy
+    restart: unless-stopped
+
+    # Security configurations
+    security_opt:
+      - no-new-privileges
+      - apparmor:unconfined
+
+    # System limits
+    ulimits:
+      nofile:
+        soft: 65536
+        hard: 65536
+
+# =============================================
+# Volumes
+# =============================================
+volumes:
+  # Named volume for PostgreSQL data persistence
+  postgres_data:
+# =============================================
+# Usage Notes:
+# 1. Start services: docker-compose up
+# 2. Custom port: PORT=9000 docker-compose up
+# 3. Detached mode: docker-compose up -d
+# 4. Stop services: docker-compose down
+#
+# Security Notes:
+# - PostgreSQL credentials are in plain text (change in production)
+# - Consider using .env file for sensitive variables
+# - In production, consider restricting port access
+# =============================================

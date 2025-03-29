@@ -35,11 +35,19 @@ RUN pnpm install --prod
 # Copy built application from builder stage
 COPY --from=builder /app/dist ./dist
 
-# Expose port
-EXPOSE 3000
+# Use a non-standard port by default
+ENV PORT=3000
+ENV NODE_ENV=production
+
+# Expose port (can be overridden by docker-compose or runtime)
+EXPOSE ${PORT}
+
+# Add healthcheck
+HEALTHCHECK --interval=30s --timeout=3s --start-period=30s --retries=3 \
+  CMD wget --no-verbose --tries=1 --spider http://localhost:${PORT}/health || exit 1
 
 # Start the application
-CMD ["node", "dist/main"] 
+CMD ["node", "dist/src/main.js"] 
 
 # Multi-stage build? 
 # https://docs.docker.com/build/building/multi-stage/
