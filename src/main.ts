@@ -6,7 +6,6 @@
 import 'dotenv/config';
 import { NestFactory } from '@nestjs/core';
 import { ValidationPipe } from '@nestjs/common';
-import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 import { AppModule } from './app.module';
 
@@ -29,19 +28,6 @@ async function bootstrap() {
       forbidNonWhitelisted: true,
     }),
   );
-
-  // Configure Swagger Documentation - now uses automatic plugin from nest-cli.json
-  // @ts-expect-error - DocumentBuilder type issues with Swagger
-  const config = new DocumentBuilder()
-    .setTitle('Kanban API')
-    .setDescription('API for managing kanban boards and tasks')
-    .setVersion('1.0')
-    .addTag('boards')
-    .build();
-
-  // @ts-expect-error - SwaggerModule type issues
-  const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api', app, document);
 
   const port = process.env.PORT ?? 3000;
   await app.listen(port, () => {
