@@ -1,0 +1,9 @@
+---
+description: 
+globs: *.tsx,*.ts,*.js,*.jsx
+alwaysApply: false
+---
+- Configure ESLint to enforce your project's coding standards
+- Use ESLint plugins specific to your technologies (e.g., TypeScript, Jest)
+- Regularly run ESLint as part of your CI/CD pipeline
+- Use `--fix` flag to automatically fix fixable issues

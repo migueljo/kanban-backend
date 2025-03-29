@@ -1,0 +1,9 @@
+---
+description: 
+globs: *.tsx,*.ts,*.jsx,*.js
+alwaysApply: false
+---
+- Use `describe` and `it` blocks for organized test suites
+- Mock dependencies with `jest.mock` for isolated unit tests
+- Utilize `beforeEach` and `afterEach` for setup and teardown
+- Use `toMatchSnapshot` for testing UI components and complex data structures

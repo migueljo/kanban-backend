@@ -1,0 +1,9 @@
+---
+description: 
+globs: *.tsx,*.ts,*.js,*.jsx
+alwaysApply: false
+---
+- Use dependency injection for better modularity and testability
+- Implement proper error handling with custom exceptions and filters
+- Utilize guards, interceptors, and pipes for request processing
+- Follow the official NestJS style guide for consistent code structure

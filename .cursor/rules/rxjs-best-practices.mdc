@@ -1,0 +1,9 @@
+---
+description: 
+globs: *.tsx,*.ts,*.js,*.jsx
+alwaysApply: false
+---
+- Use `pipe` to chain operators for better readability and performance
+- Prefer `async/await` over `subscribe` when possible for cleaner code
+- Use `shareReplay` for multicasting observables to prevent unnecessary computations
+- Properly manage subscriptions to prevent memory leaks

@@ -1,0 +1,9 @@
+---
+description: 
+globs: *.tsx,*.ts,*.js,*.jsx
+alwaysApply: false
+---
+- Configure Prettier to match your project's style preferences
+- Integrate Prettier with your IDE for real-time formatting
+- Use Prettier in your CI/CD pipeline to ensure consistent formatting
+- Combine Prettier with ESLint to avoid conflicts in formatting rules

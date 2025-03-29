@@ -1,0 +1,9 @@
+---
+description: 
+globs: *.tsx,*.ts,*.js,*.jsx
+alwaysApply: false
+---
+- Use strict null checks to prevent null pointer exceptions
+- Prefer interfaces over types for object shapes
+- Use type guards and assertions for runtime type checking
+- Implement proper type inference to reduce unnecessary type annotations
