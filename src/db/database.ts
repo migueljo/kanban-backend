@@ -5,7 +5,6 @@
  * @module Database
  * @description
  * Configures the database connection using environment variables with fallback values.
- * Implements SSL configuration for production environments and provides a global
  * database instance through Drizzle ORM.
  */
 
@@ -17,7 +16,6 @@ import * as schema from './schema/index';
 /**
  * PostgreSQL connection pool configuration
  * Uses environment variables with fallback values for local development
- * Implements SSL configuration for production environments
  */
 const pool = new Pool({
   host: process.env.DB_HOST || 'localhost',
@@ -25,13 +23,6 @@ const pool = new Pool({
   password: process.env.DB_PASSWORD || 'postgres',
   database: process.env.DB_NAME || 'kanban',
   port: Number(process.env.DB_PORT) || 5432,
-  ssl:
-    process.env.NODE_ENV === 'production'
-      ? {
-          rejectUnauthorized: true,
-          ca: process.env.DB_SSL_CA,
-        }
-      : undefined,
 });
 
 /**

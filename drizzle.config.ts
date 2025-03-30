@@ -1,4 +1,6 @@
 import type { Config } from 'drizzle-kit';
+import * as dotenv from 'dotenv';
+dotenv.config();
 
 export default {
   schema: './src/db/schema/*',
@@ -10,12 +12,5 @@ export default {
     password: process.env.DB_PASSWORD || 'postgres',
     database: process.env.DB_NAME || 'kanban',
     port: Number(process.env.DB_PORT) || 5432,
-    ssl:
-      process.env.NODE_ENV === 'production'
-        ? {
-            rejectUnauthorized: true,
-            ca: process.env.DB_SSL_CA,
-          }
-        : undefined,
   },
 } satisfies Config;

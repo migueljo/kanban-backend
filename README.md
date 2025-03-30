@@ -113,7 +113,6 @@ Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
 - `pnpm build`: Build the application for production
 - `pnpm start`: Start the application in normal mode
 - `pnpm start:prod`: Start the compiled application in production mode
-- `pnpm start:prod:ssl`: Start the application in production mode with SSL
 
 ### Docker
 
@@ -136,7 +135,3 @@ Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
 - `pnpm test:cov`: Run tests with coverage
 - `pnpm test:debug`: Run tests in debug mode
 - `pnpm test:e2e`: Run end-to-end tests
-
-### SSL
-
-- `pnpm ssl:generate`: Generate SSL certificates for development

@@ -9,10 +9,6 @@ declare module 'drizzle-kit' {
       password: string;
       database: string;
       port: number;
-      ssl?: {
-        rejectUnauthorized: boolean;
-        ca?: string;
-      };
     };
   }
 }

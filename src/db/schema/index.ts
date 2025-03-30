@@ -51,15 +51,13 @@ export const usersRelations = relations(users, ({ many }) => ({
  *
  * @property {serial} id - Unique identifier for the board
  * @property {varchar} title - Board title
- * @property {text} description - Board description
  * @property {integer} ownerId - Reference to the user who owns the board
  * @property {timestamp} createdAt - Timestamp when the board was created
  * @property {timestamp} updatedAt - Timestamp when the board was last updated
  */
 export const boards = pgTable('boards', {
   id: serial('id').primaryKey(),
-  title: varchar('title', { length: 255 }).notNull(),
-  description: text('description'),
+  name: varchar('name', { length: 255 }).notNull(),
   ownerId: integer('owner_id')
     .notNull()
     .references(() => users.id, { onDelete: 'cascade' }),

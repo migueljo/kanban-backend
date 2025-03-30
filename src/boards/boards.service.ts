@@ -17,11 +17,7 @@ export class BoardsService {
   async create(createBoardDto: CreateBoardDto, userId: number) {
     const [newBoard] = await db
       .insert(boards)
-      .values({
-        title: createBoardDto.title,
-        description: createBoardDto.description,
-        ownerId: userId,
-      })
+      .values({ ...createBoardDto, ownerId: userId })
       .returning();
 
     return newBoard;
@@ -70,11 +66,7 @@ export class BoardsService {
 
     const [updatedBoard] = await db
       .update(boards)
-      .set({
-        title: updateBoardDto.title,
-        description: updateBoardDto.description,
-        updatedAt: new Date(),
-      })
+      .set(updateBoardDto)
       .where(eq(boards.id, id))
       .returning();
 
