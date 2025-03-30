@@ -9,7 +9,7 @@ export class Board {
   id!: number;
 
   /**
-   * Title of the board
+   * Name of the board
    * @example "Project Management"
    */
   name!: string;

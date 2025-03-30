@@ -25,8 +25,7 @@ describe('BoardsController (Integration)', () => {
 
   it('should create a board', async () => {
     const createBoardDto: CreateBoardDto = {
-      title: 'Test Board',
-      description: 'This is a test board',
+      name: 'Test Board',
     };
 
     const response = await request(app.getHttpServer())
@@ -36,8 +35,7 @@ describe('BoardsController (Integration)', () => {
 
     const board = response.body as Board;
     expect(board).toHaveProperty('id');
-    expect(board.title).toBe(createBoardDto.title);
-    expect(board.description).toBe(createBoardDto.description);
+    expect(board.name).toBe(createBoardDto.name);
 
     // Save the board ID for future tests
     boardId = board.id;
@@ -60,13 +58,12 @@ describe('BoardsController (Integration)', () => {
 
     const board = response.body as Board;
     expect(board).toHaveProperty('id', boardId);
-    expect(board.title).toBe('Test Board');
+    expect(board.name).toBe('Test Board');
   });
 
   it('should update a board', async () => {
     const updateBoardDto: UpdateBoardDto = {
-      title: 'Updated Test Board',
-      description: 'This is an updated test board',
+      name: 'Updated Test Board',
     };
 
     const response = await request(app.getHttpServer())
@@ -76,8 +73,7 @@ describe('BoardsController (Integration)', () => {
 
     const board = response.body as Board;
     expect(board).toHaveProperty('id', boardId);
-    expect(board.title).toBe(updateBoardDto.title);
-    expect(board.description).toBe(updateBoardDto.description);
+    expect(board.name).toBe(updateBoardDto.name);
   });
 
   it('should return 404 for non-existent board', async () => {
