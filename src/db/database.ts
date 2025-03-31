@@ -25,6 +25,17 @@ const pool = new Pool({
   port: Number(process.env.DB_PORT) || 5432,
 });
 
+// Handle pool errors
+pool.on('error', (err) => {
+  console.error('Unexpected error on idle client', err);
+  process.exit(-1);
+});
+
+// Handle pool connection
+pool.on('connect', () => {
+  console.log('Connected to database');
+});
+
 /**
  * Drizzle ORM instance configured with the PostgreSQL pool
  * This instance is used throughout the application for database operations

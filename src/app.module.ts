@@ -15,19 +15,21 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { DrizzleModule } from './db/drizzle.module';
 import { BoardsModule } from './boards/boards.module';
+import { UsersModule } from './users/users.module';
 
 /**
  * @Module decorator configuration
  * @property {Module[]} imports - List of modules to import
  *   - DrizzleModule: Provides database connectivity and ORM functionality
  *   - BoardsModule: Provides board related functionality
+ *   - UsersModule: Provides user related functionality
  * @property {Controller[]} controllers - List of controllers to instantiate
  *   - AppController: Handles HTTP requests for the root endpoints
  * @property {Provider[]} providers - List of providers to instantiate
  *   - AppService: Contains business logic for the application
  */
 @Module({
-  imports: [DrizzleModule, BoardsModule],
+  imports: [DrizzleModule, BoardsModule, UsersModule],
   controllers: [AppController],
   providers: [AppService],
 })
