@@ -17,6 +17,8 @@ import {
 } from 'drizzle-orm/pg-core';
 import { relations } from 'drizzle-orm';
 
+import { timestamps } from './common';
+
 /**
  * Users table definition
  * @description
@@ -27,13 +29,14 @@ import { relations } from 'drizzle-orm';
  * @property {text} email - User's unique email address
  * @property {timestamp} createdAt - Timestamp when the user was created
  * @property {timestamp} updatedAt - Timestamp when the user was last updated
+ *
+ * @example
  */
 export const users = pgTable('users', {
   id: serial('id').primaryKey(),
-  name: text('name').notNull(),
   email: text('email').notNull().unique(),
-  createdAt: timestamp('created_at').defaultNow().notNull(),
-  updatedAt: timestamp('updated_at').defaultNow().notNull(),
+  name: text('name').notNull(),
+  ...timestamps,
 });
 
 /**
@@ -53,8 +56,7 @@ export const boards = pgTable('boards', {
   ownerId: integer('owner_id')
     .notNull()
     .references(() => users.id, { onDelete: 'cascade' }),
-  createdAt: timestamp('created_at').defaultNow().notNull(),
-  updatedAt: timestamp('updated_at').defaultNow().notNull(),
+  ...timestamps,
 });
 
 /**
@@ -66,8 +68,7 @@ export const boardsColumns = pgTable('boards_columns', {
   boardId: integer('board_id')
     .notNull()
     .references(() => boards.id, { onDelete: 'cascade' }),
-  createdAt: timestamp('created_at').defaultNow().notNull(),
-  updatedAt: timestamp('updated_at').defaultNow().notNull(),
+  ...timestamps,
 });
 
 /**

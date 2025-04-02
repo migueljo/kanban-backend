@@ -13,7 +13,8 @@ import { BoardsService } from './boards.service';
 import { CreateBoardDto } from './dto/create-board.dto';
 import { UpdateBoardDto } from './dto/update-board.dto';
 
-@Controller('boards')
+// TODO: Refactor to use a base controller for all controllers
+@Controller('api/v1/boards')
 export class BoardsController {
   constructor(private readonly boardsService: BoardsService) {}
 
