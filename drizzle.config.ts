@@ -12,5 +12,10 @@ export default {
     password: process.env.DB_PASSWORD || 'postgres',
     database: process.env.DB_NAME || 'kanban',
     port: Number(process.env.DB_PORT) || 5432,
+    // @ts-expect-error suppress ssl error for local development when running migrations
+    ssl:
+      process.env.NODE_ENV === 'production'
+        ? { rejectUnauthorized: false }
+        : false,
   },
 } satisfies Config;
