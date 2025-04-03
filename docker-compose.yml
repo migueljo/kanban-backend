@@ -1,8 +1,3 @@
-# =============================================
-# docker-compose.yml Documentation
-# Version: 3.8
-# =============================================
-
 # Services
 services:
   # =============================================
@@ -20,6 +15,7 @@ services:
     # Default value: 3000
     ports:
       - '${PORT:-3000}:${PORT:-3000}'
+      - '3001:3001' # Expose port for Drizzle Studio
 
     # Environment variables
     # NODE_ENV: Development mode

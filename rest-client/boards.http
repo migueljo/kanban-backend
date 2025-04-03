@@ -9,7 +9,8 @@ POST http://localhost:3000/api/v1/boards
 content-type: application/json
 
 {
-    "name": "Board 1"
+    "name": "Board 1",
+    "userId": 2
 }
 
 ### Update board

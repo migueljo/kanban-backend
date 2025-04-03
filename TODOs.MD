@@ -1,8 +1,8 @@
 # TODOs
 
 [ ] Fix failing `pnpm db:push`
-[ ] Fix failing `pnpm db:studio`
-[ ] Generate auto commits in Cursor in English
+[x] Fix failing `pnpm db:studio`
+[x] Generate auto commits in Cursor in English
 
 ## Knowledge
 
