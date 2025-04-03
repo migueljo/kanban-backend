@@ -10,7 +10,7 @@ import { IsOptional, IsString, MaxLength } from 'class-validator';
 
 export class UpdateBoardDto {
   /**
-   * The updated title of the board
+   * The updated name of the board
    * @example "Updated Project Management"
    */
   @IsOptional()

@@ -18,12 +18,6 @@ import { UpdateBoardDto } from './dto/update-board.dto';
 export class BoardsController {
   constructor(private readonly boardsService: BoardsService) {}
 
-  @Post()
-  create(@Body() createBoardDto: CreateBoardDto) {
-    const userId = 1;
-    return this.boardsService.create(createBoardDto, userId);
-  }
-
   @Get()
   findAll() {
     const userId = 1;
@@ -34,6 +28,11 @@ export class BoardsController {
   findOne(@Param('id', ParseIntPipe) id: number) {
     const userId = 1;
     return this.boardsService.findOne(id, userId);
+  }
+
+  @Post()
+  create(@Body() createBoardDto: CreateBoardDto) {
+    return this.boardsService.create(createBoardDto);
   }
 
   @Patch(':id')

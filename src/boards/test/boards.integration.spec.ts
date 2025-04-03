@@ -26,6 +26,7 @@ describe('BoardsController (Integration)', () => {
   it('should create a board', async () => {
     const createBoardDto: CreateBoardDto = {
       name: 'Test Board',
+      userId: 1,
     };
 
     const response = await request(app.getHttpServer())

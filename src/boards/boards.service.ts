@@ -14,10 +14,10 @@ export class BoardsService {
    * @param userId - ID of the user creating the board
    * @returns The created board
    */
-  async create(createBoardDto: CreateBoardDto, userId: number) {
+  async create(createBoardDto: CreateBoardDto) {
     const [newBoard] = await db
       .insert(boards)
-      .values({ ...createBoardDto, ownerId: userId })
+      .values({ ...createBoardDto, ownerId: createBoardDto.userId })
       .returning();
 
     return newBoard;

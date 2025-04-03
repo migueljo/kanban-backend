@@ -5,15 +5,23 @@
  * @description Data transfer object that defines the required fields when creating a new board
  */
 
-import { IsNotEmpty, IsString, MaxLength } from 'class-validator';
+import { IsNotEmpty, IsNumber, IsString, MaxLength } from 'class-validator';
 
 export class CreateBoardDto {
   /**
-   * The title of the board
+   * The name of the board
    * @example "Project Management"
    */
   @IsNotEmpty()
   @IsString()
   @MaxLength(255)
   name: string = '';
+
+  /**
+   * The user ID of the board
+   * @example 1
+   */
+  @IsNotEmpty()
+  @IsNumber()
+  userId: number;
 }
